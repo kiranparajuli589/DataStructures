@@ -11,11 +11,27 @@ class Stack {
         Stack() { top = -1; } // constructor
 
         // operation declarations
-        bool push(int x);
+        bool push(int newElement);
         int pop();
         int peek();
         bool isEmpty();
+        bool isFull();
+        void display();
 };
+
+/**
+ * Determines if the stack is empty
+ * 
+ * @returns true if stack is empty
+ * @returns false if stack is not empty
+*/
+bool Stack::isEmpty() {
+    return (top < 0);
+}
+
+bool Stack::isFull() {
+    return (top >= (MAX - 1));
+}
 
 /**
  * Adds an element to the top of the stack
@@ -24,7 +40,7 @@ class Stack {
  * @returns true if element is successfully added
 */
 bool Stack::push(int newElement) {
-    if (top >= (MAX - 1)) {
+    if (Stack::isFull()) {
         cout << "Stack reached max capacity" << endl;
         return false;
     } else {
@@ -41,7 +57,7 @@ bool Stack::push(int newElement) {
  * @returns the popped element if stack is not empty
 */
 int Stack::pop() {
-    if (top < 0) {
+    if (Stack::isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -57,7 +73,7 @@ int Stack::pop() {
  * @returns the top element if stack is not empty
 */
 int Stack::peek() {
-    if (top < 0) {
+    if (Stack::isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -67,33 +83,41 @@ int Stack::peek() {
 }
 
 /**
- * Determines if the stack is empty
- * 
- * @returns true if stack is empty
- * @returns false if stack is not empty
+ * Displays the elements of the stack
 */
-bool Stack::isEmpty() {
-    return (top < 0);
+void Stack::display() {
+    if (Stack::isEmpty()) {
+        cout << "Stack is empty." << endl;
+        return;
+    } else {
+        cout << "Stack elements are: " << endl;
+        for (int i = 0; i <= top; i++) {
+            cout << "| " << stackArray[i] << endl;
+        }
+        cout << "+----+" << endl;
+    }
 }
 
 
 int main () {
     class Stack stack;
     stack.push(10);
-    stack.push(20);
+    stack.push(200);
     stack.push(30);
 
+    stack.display();
+    
     cout << stack.pop() << " popped from stack" << endl;
     cout << "Top element is " << stack.peek() << endl;
-    cout << "Stack is empty: " << stack.isEmpty() << endl;
+    
+    stack.display();
 
     // pop until the stack is empty
     while (!stack.isEmpty()) {
         cout << stack.pop() << " popped from stack" << endl;
     }
 
-    cout << "Top element is " << stack.peek() << endl;
-    cout << "Stack is empty: " << stack.isEmpty() << endl;
+    stack.display();
 
     return 0;
 }
