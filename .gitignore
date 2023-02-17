@@ -1,0 +1,12 @@
+# C++ object and executables
+*.o
+queue
+stack
+
+# IDE caches
+*.cache
+*.log
+*.swp
+*.swo
+.vscode
+.idea
