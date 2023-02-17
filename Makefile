@@ -1,25 +1,17 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
+SOURCES=stacks/ll_stack.cpp stacks/array_stack.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLES=$(SOURCES:.cpp=)
 
-help:
-	@echo "--------------------------------"
-	@echo "Available targets:"
-	@echo "--------------------------------"
-	@echo "make help 	- this help"
-	@echo "make all	- build all"
-	@echo "make stack 	- build stack"
-	@echo "make queue 	- build queue"
-	@echo "make clean 	- clean up"
-	@echo "--------------------------------"
+all: $(SOURCES) $(EXECUTABLES)
 
-all: stack queue
+$(EXECUTABLES): $(OBJECTS)
+	$(CC) $(LDFLAGS) $@.o -o $@
 
-stack: stack.cpp stack.o
-	$(CC) $(LDFLAGS) stack.cpp -o stack
-
-queue: queue.cpp queue.o
-	$(CC) $(LDFLAGS) queue.cpp -o queue
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f stack.o stack queue.o queue
+	rm -rf *.o stacks/*.o $(EXECUTABLES)
