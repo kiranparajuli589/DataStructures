@@ -21,7 +21,7 @@ Other non essential operations can be:
 ## Implementation
 The stack can be implemented easily either through an array or a linked list, as stacks are just special cases of lists. What identifies the data structure as a stack, in either case, is not the implementation but the way the data is accessed.
 
-### Array implementation
+### [Array implementation](https://github.com/kiranparajuli589/DataStructures/blob/main/stacks/array_stack.cpp "Array implementation")
 The array implementation is the simplest one, as it is just a matter of keeping track of the top of the stack. The top of the stack is the last element added to the stack. The stack is empty when the top is equal to -1. The stack is full when the top is equal to the size of the array minus one.
 
 #### Advantages
@@ -32,7 +32,7 @@ The array implementation is the simplest one, as it is just a matter of keeping 
 - The stack is not dynamic and can only hold a fixed number of elements.
 - The stack size must be specified in advance.
 
-### Linked list implementation
+### [Linked list implementation](https://github.com/kiranparajuli589/DataStructures/blob/main/stacks/ll_stack.cpp "Linked list implementation")
 Another option for implementing stacks is to use a singly linked list. A stack is then a pointer to the "head" of the list. The top of the stack is the head of the list. The stack is empty when the head is NULL. The stack is full when the memory is full.
 
 #### Advantages
@@ -66,6 +66,6 @@ The time complexity of the operations is the following:
 - Stacks also helps in implementing function calls in programming languages.
 
 ## References
-- [Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))
-- [GeeksforGeeks](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+- [Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type) "Wikipedia")
+- [GeeksforGeeks](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/ "GeeksforGeeks")
 
