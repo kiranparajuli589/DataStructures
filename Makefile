@@ -3,10 +3,15 @@ CFLAGS=-c -Wall
 LDFLAGS=
 
 help:
-	@echo "make		- build all"
+	@echo "--------------------------------"
+	@echo "Available targets:"
+	@echo "--------------------------------"
+	@echo "make help 	- this help"
+	@echo "make all	- build all"
 	@echo "make stack 	- build stack"
 	@echo "make queue 	- build queue"
 	@echo "make clean 	- clean up"
+	@echo "--------------------------------"
 
 all: stack queue
 
