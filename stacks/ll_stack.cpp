@@ -24,6 +24,7 @@ class Stack {
         void push(int newElement);
         int pop();
         int peek();
+        int size();
         bool isEmpty();
         void display();
 };
@@ -38,8 +39,30 @@ bool Stack::isEmpty() {
     return top == NULL;
 }
 
+
+/**
+ * Returns the size of the stack
+ * 
+ * @returns 0 if stack is empty
+ * @returns the size of the stack if stack is not empty
+*/
+int Stack::size() {
+    int size = 0;
+    Node *temp = top;
+    while (temp != NULL) {
+        size++;
+        temp = temp->next;
+    }
+    return size;
+}
+
+
 /**
  * Adds an element to the top of the stack
+ * 
+ * @param newElement the element to be added to the stack
+ * 
+ * @returns void
 */
 void Stack::push(int newElement) {
     Node *newNode = new Node(); // Create a new node
@@ -85,16 +108,23 @@ int Stack::peek() {
 
 /**
  * Displays the stack
+ * 
+ * @returns void
 */
 void Stack::display() {
     if (Stack::isEmpty()) {
         cout << "Stack is empty" << endl;
     } else {
+        cout << "Size of stack is " << Stack::size() << endl;
+        cout << "Top element is " << Stack::peek() << endl;
+
         Node *temp = top;
+
         while (temp != NULL) {
             cout << "| " << temp->data << endl;
             temp = temp->next;
         }
+
         cout << "+---+" << endl;
     }
 }
@@ -106,13 +136,9 @@ int main() {
         stack.push(i);
     }
 
-    cout << "Top element is " << stack.peek() << endl;
-
     stack.display();
     
     cout << stack.pop() << " popped from stack" << endl;
-    
-    cout << "Top element is " << stack.peek() << endl;
     
     stack.display();
 

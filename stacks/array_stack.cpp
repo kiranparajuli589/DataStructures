@@ -14,6 +14,7 @@ class Stack {
         bool push(int newElement);
         int pop();
         int peek();
+        int size();
         bool isEmpty();
         bool isFull();
         void display();
@@ -29,8 +30,21 @@ bool Stack::isEmpty() {
     return (top < 0);
 }
 
+/**
+ * Determines if the stack is full
+ * 
+ * @returns true if stack is full
+ * @returns false if stack is not full
+*/
 bool Stack::isFull() {
     return (top >= (MAX - 1));
+}
+
+/**
+ * Returns the size of the stack
+*/
+int Stack::size() {
+    return (top + 1);
 }
 
 /**
@@ -90,10 +104,14 @@ void Stack::display() {
         cout << "Stack is empty." << endl;
         return;
     } else {
+        cout << "Stack size is " << Stack::size() << endl;
+        cout << "Top element is " << Stack::peek() << endl;
         cout << "Stack elements are: " << endl;
-        for (int i = 0; i <= top; i++) {
+        
+        for (int i = top; i >= 0; i--) {
             cout << "| " << stackArray[i] << endl;
         }
+
         cout << "+----+" << endl;
     }
 }
@@ -108,7 +126,6 @@ int main () {
     stack.display();
     
     cout << stack.pop() << " popped from stack" << endl;
-    cout << "Top element is " << stack.peek() << endl;
     
     stack.display();
 
