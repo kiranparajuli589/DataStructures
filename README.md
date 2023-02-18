@@ -1,5 +1,7 @@
 # Data Structures
-This repository demonstrates concepts and implementations for different abstract data structures. Implementations are done in C++.
+This repository demonstrates concepts and implementations for different abstract data structures.
+Implementations are done in C++. The following data structures are covered:
 
-1. [Stack](stacks/README.md)
-2. [Queue](queues/README.md)
+- [Stack](stacks/README.md)
+   - [Expressions](expressions/README.md) (infix to postfix and prefix)
+- [Queue](queues/README.md)
