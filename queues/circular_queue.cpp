@@ -71,11 +71,11 @@ int Queue::getCount() {
  * @returns void
 */
 void Queue::enqueue(int itemToAdd) {
-    if (Queue::isFull()) {
+    if (isFull()) {
         cout << "Queue is full" << endl;
     } else {
         Node *newNode = new Node(itemToAdd);
-        if (Queue::isEmpty()) {
+        if (isEmpty()) {
             front = rear = newNode;
             rear->next = front;
             front->next = rear;
@@ -89,7 +89,7 @@ void Queue::enqueue(int itemToAdd) {
 }
 
 void Queue::dequeue() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         cout << "Queue is empty" << endl;
     } else {
         Node *temp = front;
@@ -113,7 +113,7 @@ void Queue::dequeue() {
  * @returns the first item in the queue
 */
 int Queue::head() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         return -1;
     } else {
         return front->data;
@@ -126,7 +126,7 @@ int Queue::head() {
  * @returns the last item in the queue
 */
 int Queue::tail() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         return -1;
     } else {
         return rear->data;
@@ -139,12 +139,12 @@ int Queue::tail() {
  * @returns void
 */
 void Queue::display() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         cout << "Queue is empty" << endl;
     } else {
-        cout << "Queue size: " << Queue::getCount() << endl;
-        cout << "Queue head: " << Queue::head() << endl;
-        cout << "Queue tail: " << Queue::tail() << endl;
+        cout << "Queue size: " << getCount() << endl;
+        cout << "Queue head: " << head() << endl;
+        cout << "Queue tail: " << tail() << endl;
 
         Node *temp = front;
         cout << "Queue contents: " << endl;

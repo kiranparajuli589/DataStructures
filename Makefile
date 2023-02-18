@@ -15,4 +15,4 @@ $(EXECUTABLES): $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o stacks/*.o $(EXECUTABLES)
+	rm -rf *.o **/*.o $(EXECUTABLES)

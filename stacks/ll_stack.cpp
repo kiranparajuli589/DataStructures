@@ -79,7 +79,7 @@ void Stack::push(int newElement) {
  * @returns the popped element if stack is not empty
 */
 int Stack::pop() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -98,7 +98,7 @@ int Stack::pop() {
  * @returns the top element if stack is not empty
 */
 int Stack::peek() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -112,11 +112,11 @@ int Stack::peek() {
  * @returns void
 */
 void Stack::display() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty" << endl;
     } else {
-        cout << "Size of stack is " << Stack::size() << endl;
-        cout << "Top element is " << Stack::peek() << endl;
+        cout << "Size of stack is " << size() << endl;
+        cout << "Top element is " << peek() << endl;
 
         Node *temp = top;
 

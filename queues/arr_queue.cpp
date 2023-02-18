@@ -54,7 +54,7 @@ bool Queue::isFull() {
  * Returns the size of the queue
 */
 int Queue::size() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         return 0;
     } else {
         return rear - front + 1;
@@ -69,10 +69,10 @@ int Queue::size() {
  * @returns void
 */
 void Queue::enqueue(int itemToAdd) {
-    if (Queue::isFull()) {
+    if (isFull()) {
         cout << "Queue is already full" << endl;
     } else {
-        if (Queue::isEmpty()) {
+        if (isEmpty()) {
             front = 0;
             rear = 0;
         } else {
@@ -86,7 +86,7 @@ void Queue::enqueue(int itemToAdd) {
  * Removes an element from the front of the queue
 */
 int Queue::dequeue() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         cout << "Queue is already empty" << endl;
         return -1;
     } else {
@@ -105,7 +105,7 @@ int Queue::dequeue() {
  * Returns the head of the queue
 */
 int Queue::head() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         cout << "Queue is empty" << endl;
         return -1;
     } else {
@@ -117,7 +117,7 @@ int Queue::head() {
  * Returns the tail of the queue
 */
 int Queue::tail() {
-    if (Queue::isEmpty()) {
+    if (isEmpty()) {
         cout << "Queue is empty" << endl;
         return -1;
     } else {
@@ -129,12 +129,12 @@ int Queue::tail() {
  * Displays the queue
 */
 void Queue::display() {
-    if(Queue::isEmpty()) {
+    if(isEmpty()) {
         cout << "Queue is empty" << endl;
     } else {
-        cout << "Size of the queue is " << Queue::size() << endl;
-        cout << "Head of the queue is " << Queue::head() << endl;
-        cout << "Tail of the queue is " << Queue::tail() << endl;
+        cout << "Size of the queue is " << size() << endl;
+        cout << "Head of the queue is " << head() << endl;
+        cout << "Tail of the queue is " << tail() << endl;
 
         cout << "Queue: " << endl;
 

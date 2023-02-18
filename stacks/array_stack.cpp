@@ -2,13 +2,17 @@
 
 using namespace std;
 
-#define MAX 10
-
 class Stack {
     int top;
     public:
-        int stackArray[MAX];
-        Stack() { top = -1; } // constructor
+        int max;
+        int *stackArray;
+        
+        Stack(int maxSize) {
+            top = -1;
+            max = maxSize;
+            stackArray = new int[maxSize];
+        } // constructor
 
         // operation declarations
         bool push(int);
@@ -37,7 +41,7 @@ bool Stack::isEmpty() {
  * @returns false if stack is not full
 */
 bool Stack::isFull() {
-    return (top >= (MAX - 1));
+    return (top >= (max - 1));
 }
 
 /**
@@ -54,7 +58,7 @@ int Stack::size() {
  * @returns true if element is successfully added
 */
 bool Stack::push(int newElement) {
-    if (Stack::isFull()) {
+    if (isFull()) {
         cout << "Stack reached max capacity" << endl;
         return false;
     } else {
@@ -71,7 +75,7 @@ bool Stack::push(int newElement) {
  * @returns the popped element if stack is not empty
 */
 int Stack::pop() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -87,7 +91,7 @@ int Stack::pop() {
  * @returns the top element if stack is not empty
 */
 int Stack::peek() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty" << endl;
         return 0;
     } else {
@@ -100,12 +104,12 @@ int Stack::peek() {
  * Displays the elements of the stack
 */
 void Stack::display() {
-    if (Stack::isEmpty()) {
+    if (isEmpty()) {
         cout << "Stack is empty." << endl;
         return;
     } else {
-        cout << "Stack size is " << Stack::size() << endl;
-        cout << "Top element is " << Stack::peek() << endl;
+        cout << "Stack size is " << size() << endl;
+        cout << "Top element is " << peek() << endl;
         cout << "Stack elements are: " << endl;
         
         for (int i = top; i >= 0; i--) {
@@ -118,7 +122,7 @@ void Stack::display() {
 
 
 int main () {
-    class Stack stack;
+    class Stack stack(5);
     stack.push(10);
     stack.push(200);
     stack.push(30);
