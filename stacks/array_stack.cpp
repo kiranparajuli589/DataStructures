@@ -11,7 +11,7 @@ class Stack {
         Stack() { top = -1; } // constructor
 
         // operation declarations
-        bool push(int newElement);
+        bool push(int);
         int pop();
         int peek();
         int size();

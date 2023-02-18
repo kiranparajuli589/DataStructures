@@ -1,7 +1,8 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=stacks/ll_stack.cpp stacks/array_stack.cpp
+SOURCES=stacks/ll_stack.cpp stacks/array_stack.cpp \
+	queues/arr_queue.cpp queues/ll_queue.cpp queues/circular_queue.cpp queues/deque.cpp queues/priority_queue.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLES=$(SOURCES:.cpp=)
 
