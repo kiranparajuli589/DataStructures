@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=stacks/ll_stack.cpp stacks/array_stack.cpp \
-	queues/arr_queue.cpp queues/ll_queue.cpp queues/circular_queue.cpp queues/deque.cpp queues/priority_queue.cpp \
-	expressions/infix_to_postfix.cpp expressions/infix_to_prefix.cpp
+SOURCES=stack/ll_stack.cpp stack/array_stack.cpp \
+	queue/arr_queue.cpp queue/ll_queue.cpp queue/circular_queue.cpp queue/deque.cpp queue/priority_queue.cpp \
+	expression/infix_to_postfix.cpp expression/infix_to_prefix.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLES=$(SOURCES:.cpp=)
 
