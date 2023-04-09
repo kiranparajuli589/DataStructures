@@ -15,7 +15,7 @@ Fig: A simple tree data structure
 ## Basic Terminologies
 Here are some basic terms that are commonly used in tree data structures:
 
-* **Node**: A node is a basic unit of a tree data structure. It is a data structure that contains a value and a reference to its child nodes.**{ A, B, C, D, E, F}** are all nodes in the above tree.
+* **Node**: A node is a basic unit of a tree data structure. It is a data structure that contains a value and a reference to its child nodes.**{A, B, C, D, E, F}** are all nodes in the above tree.
 * **Edge**: An edge is a connection between two nodes. In the above tree, **A** is connected to **B** and **C** by edges. The edges are also called links or branches.
 * **Parent Node**: A node which is a predecessor of another node is called its parent node. In the above tree, **A** is the parent of **B** and **C**.
 * **Child Node**: A node which is a successor of another node is called its child node. In the above tree, **B** and **C** are the children of **A**.
@@ -42,6 +42,8 @@ Here are some basic terms that are commonly used in tree data structures:
 ## Binary Tree
 A binary tree is a type of tree data structure in which each node has at most two children, referred to as the left child and the right child. Each node in a binary tree stores a value or key, and may also have additional attributes such as pointers to its parent or child nodes.
 
+### Operations
+
 The operations that can be performed on a binary tree are:
 
 1. **Insertion**: The insertion operation adds a new node with a given value to the tree. To insert a node in a binary tree, we start at the root node and compare the new value with the value of the current node. If the new value is smaller than the current node's value, we move to its left child, and if it is greater, we move to its right child. We repeat this process until we reach an empty node, and then we insert the new node there.
@@ -50,4 +52,73 @@ The operations that can be performed on a binary tree are:
    2. Pre-order traversal: In this traversal method, we first visit the current node, then the left child, and finally the right child. This method is also called the root-left-right traversal method.
    3. Post-order traversal: In this traversal method, we first visit the left child, then the right child, and finally the current node. This method is also called the left-right-root traversal method.
 3. **Search**: The search operation finds a node with a given value in the tree. To search for a node in a binary tree, we start at the root node and compare the search value with the value of the current node. If the search value is smaller than the current node's value, we move to it's left child, and if it is greater, we move to its right child. We repeat this process until we either find the node with the given value or reach an empty node.
-4. **Deletion**: The deletion operation removes a node with a given value from the tree. There are several cases to consider when deleting a node, depending on whether it has zero, one or two children. In the case of a node with two children, we can replace it with the next largest value in the tree, which can be found by traversing to the right child and then repeatedly moving to its left child until we reach a leaf node.
+4. **Deletion**: The deletion operation removes a node with a given value from the tree. There are several cases to consider when deleting a node, depending on whether it has zero, one or two children. In the case of a node with zero children, we simply remove it from the tree. In the case of a node with one child, we replace it with its child. If the node has two children, we replace the node to be deleted with the deepest node in the left (or right) subtree.
+
+### Types:
+#### Full Binary Tree
+A full binary tree is a special type of Binary tree in which every node has either zero or two children.
+
+```
+      A
+     / \
+    B   C
+   / \
+  D   E
+```
+#### Perfect Binary Tree
+A perfect binary tree is a special type of binary tree in which every internal node has exactly two child nodes and all the leaf nodes are at the same level.
+
+```
+       A
+     /   \
+    B     C
+   / \   / \
+  D   E F   G
+```
+#### Complete Binary Tree
+A complete binary tree is a special type of binary tree in which every level, except possibly the last, is completely filled, and the nodes are filled from left to right.
+
+In complete binary tree:
+- Every level except the last level is completely filled.
+- All the nodes are as far left as possible.
+
+```
+       A
+     /   \
+    B     C
+   / \   /
+  D   E F
+```
+
+#### Balanced Binary Tree
+A balanced binary tree is a special type of binary tree in which the difference between the height of the left subtree and the height of the right subtree is not more than one.
+
+In a balanced binary tree:
+- The absolute difference of the height of the left subtree and the height of the right subtree is less than or equal to 1.
+- For each node, its left subtree and right subtree are also balanced binary trees.
+
+Balanced binary trees are also called AVL trees or Height-balanced Binary trees. 
+
+```
+       A
+     /   \
+    B     C
+   / \   / \
+  D   E F   G
+```
+
+```
+       A
+     /   \
+    B     C
+   / \   / \
+  D   E F   G
+```
+
+```
+       A
+     /   \
+    B     C
+   / \   / \
+  D   E F   G
+```

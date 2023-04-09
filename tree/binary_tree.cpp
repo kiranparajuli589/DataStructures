@@ -1,4 +1,7 @@
 #include <iostream>
+#include <queue>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -24,49 +27,15 @@ class BinaryTree {
         } // constructor
 
         // operation prototypes
-        void insertNode(int);
         void inOrderTraversal(TreeNode*);
         void preOrderTraversal(TreeNode*);
         void postOrderTraversal(TreeNode*);
-        bool search(int);
-        bool deleteNode(int);
-        TreeNode *findMin(TreeNode*);
+        TreeNode* search(int);
+        TreeNode* deleteNode(int);
+        void deleteDeepest(TreeNode*, TreeNode*);
+        void display(TreeNode*, string, bool);
+        int getTreeHeight(TreeNode*);
 };
-
-void BinaryTree::insertNode(int value) {
-    TreeNode *newNode = new TreeNode(value);
-    if (root == nullptr) {
-        root = newNode;
-    } else {
-        TreeNode *curr = root;
-        while(true) {
-            // If the new value is smaller than the current node's value
-            if (value < curr->data) {
-                // If the left node is empty then, we set it to the new value
-                if (curr->left == nullptr) {
-                    curr->left = newNode;
-                    break;
-                }
-                // Otherwise, we keep looking to the left side
-                else {
-                    curr = curr->left;
-                }
-            }
-            // Otherwise, we move to its right child
-            else {
-                // If the right node is empty, then we set it to the new value
-                if (curr->right == nullptr) {
-                    curr->right = newNode;
-                    break;
-                }
-                // Otherwise, we keep looking to the right side
-                else {
-                    curr = curr->right;
-                }
-            }
-        }    
-    }
-}
 
 void BinaryTree::inOrderTraversal(TreeNode *node) {
     if (node == nullptr) {
@@ -104,12 +73,12 @@ void BinaryTree::postOrderTraversal(TreeNode *node) {
     cout << node->data << " ";
 }
 
-bool BinaryTree::search(int value) {
+TreeNode* BinaryTree::search(int value) {
     TreeNode *curr = root;
     while (curr != nullptr) {
         // If the value is found, then we return true
         if(curr->data == value) {
-            return true;
+            return curr;
         }
         // Otherwise, we move to its left or right child depending on the value
         // If the value is smaller than the current node's value, then we move to its left child
@@ -122,92 +91,112 @@ bool BinaryTree::search(int value) {
         }
     }
     // If the value is not found, then we return false
-    return false;
+    return nullptr;
 }
 
-TreeNode *BinaryTree::findMin(TreeNode *node) {
-    // If the tree is empty, then we return nullptr
-    if (node == nullptr) {
+
+TreeNode* BinaryTree::deleteNode(int value) {
+    // if the tree is an empty one, then:
+    if (root == nullptr) {
         return nullptr;
     }
-    // If the left child is empty, then the current node is the minimum
-    if (node->left == nullptr) {
-        return node;
+    // if three tree has root only, then:
+    if(root->left == nullptr && root->right == nullptr) {
+        if (root->data == value){
+            root = nullptr;
+            return root;
+        } else {
+            return nullptr;
+        }
     }
-    // Otherwise, we keep looking to the left side
-    return findMin(node->left);
+    // if the tree has more than 1 levels:
+    std::queue<TreeNode*> q;
+    q.push(root);
+    TreeNode *lastNode = nullptr;
+    TreeNode *nodeToDelete = nullptr;
+    while (!q.empty()) {
+        lastNode = q.front();
+        q.pop();
+        if(lastNode->data == value) {
+            nodeToDelete = lastNode;
+        }
+        if(lastNode->left) {
+            q.push(lastNode->left);
+        }
+        if(lastNode->right) {
+            q.push(lastNode->right);
+        }
+    }
+    // if no key is found, then:
+    if(!nodeToDelete) {
+        return nullptr;
+    }
+    nodeToDelete->data = lastNode->data;
+    deleteDeepest(root, lastNode);
+    return lastNode;
 }
 
-
-bool BinaryTree::deleteNode(int value) {
-    // Algorithm:
-    // 1. Find the node to be deleted
-    // 2. If the node is not found, then return false
-    // 3. If the node has no children, then delete it and return true
-    // 4. If the node has one child, then replace it with its child and return true
-    // 5. If the node has two children,
-    //    a. Find the minimum value in the right subtree
-    //    b. Replace the node's value with the minimum value
-    //    c. Recursively delete the node with the minimum value in the right subtree
-    //    d. Return true
-    //    Note: We can also find the maximum value in the left subtree and replace the node's value with it
-    //    Note: We replace the value of the node to be deleted with the value of the minimum (or maximum) node
-    //          in the right (or left) subtree, instead of actually moving the node. This is because moving the
-    //          node could change the structure of the tree and break the binary tree property.
-
-    // If the tree is empty, then we return false
+void BinaryTree::deleteDeepest(TreeNode *root, TreeNode *node) {
     if (root == nullptr) {
-        return false;
+        return;
     }
-
-    // Check if the node to be deleted exists in the tree
-    if (!search(value)) {
-        return false;
+    if(root == node && root->left == nullptr && root->right == nullptr) {
+        delete node;
+        root = nullptr;
+        return;
     }
-
-    // Find the node to be deleted
-    TreeNode *nodeToDelete = root;
-    while(nodeToDelete->data != value) {
-        // If the value is smaller than the current node's value, then we move to its left child
-        if (value < nodeToDelete->data) {
-            nodeToDelete = nodeToDelete->left;
-        }
-        // Otherwise, we move to its right child
-        else {
-            nodeToDelete = nodeToDelete->right;
-        }
+    if(root->left == node) {
+        delete node;
+        root->left = nullptr;
+        return;
     }
-
-    // If the node to be deleted has no children, then we delete it and return true
-    if (nodeToDelete->left == nullptr && nodeToDelete->right == nullptr) {
-        delete nodeToDelete;
-        return true;
+    if(root->right == node) {
+        delete node;
+        root->right = nullptr;
+        return;
     }
+    deleteDeepest(root->left, node);
+    deleteDeepest(root->right, node);
+}
 
-    // If the node to be deleted has one child, then we replace it with its child and return true
-    if (nodeToDelete->left == nullptr) {
-        TreeNode *temp = nodeToDelete;
-        nodeToDelete = nodeToDelete->right;
-        delete temp;
-        return true;
+void BinaryTree::display(TreeNode *node, string prefix = "", bool isLeft = true) {
+   if (node != nullptr) {
+        cout << prefix;
+        cout << (isLeft ? "├──(l) [" : "└──(r) [");
+        cout << node->data << "]" << endl;
+        display(node->left, prefix + (isLeft ? "│   " : "    "), true);
+        display(node->right, prefix + (isLeft ? "│   " : "    "), false);
     }
-    if (nodeToDelete->right == nullptr) {
-        TreeNode *temp = nodeToDelete;
-        nodeToDelete = nodeToDelete->left;
-        delete temp;
-        return true;
+}
+
+int BinaryTree::getTreeHeight(TreeNode *node) {
+    if (node == nullptr) {
+        return 0;
     }
+    int leftHeight = getTreeHeight(node->left);
+    int rightHeight = getTreeHeight(node->right);
 
-    // If the node to be deleted has two children, then we find the minimum value in the right subtree
-    // and replace the node's value with the minimum value
+    return max(leftHeight, rightHeight) + 1;
+}
 
-    // Find the minimum value in the right subtree
-    TreeNode *minNode = findMin(nodeToDelete->right);
+int main() {
+    BinaryTree btree;
+    btree.root = new TreeNode(10);
+    btree.root->left = new TreeNode(5);
+    btree.root->right = new TreeNode(15);
+    btree.root->left->left = new TreeNode(2);
+    btree.root->left->right = new TreeNode(7);
+    btree.root->right->left = new TreeNode(12);
+    btree.root->right->right = new TreeNode(17);
+    btree.root->left->left->left = new TreeNode(1);
+    btree.root->left->left->right = new TreeNode(3);
 
-    // Replace the node's value with the minimum value
-    nodeToDelete->data = minNode->data;
-
-    // Recursively delete the node with the minimum value in the right subtree
-    nodeToDelete->right = deleteNode(nodeToDelete->data);
+    btree.preOrderTraversal(btree.root);
+    cout << endl;
+    btree.inOrderTraversal(btree.root);
+    cout << endl;
+    btree.postOrderTraversal(btree.root);
+    cout << endl;
+    btree.display(btree.root);
 }
 
