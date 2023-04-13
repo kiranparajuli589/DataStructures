@@ -2,6 +2,7 @@
 #include <queue>
 #include <iomanip>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -196,6 +197,9 @@ int main() {
     btree.inOrderTraversal(btree.root);
     cout << endl;
     btree.postOrderTraversal(btree.root);
+    cout << endl;
+    btree.display(btree.root);
+    btree.deleteNode(2);
     cout << endl;
     btree.display(btree.root);
 }
