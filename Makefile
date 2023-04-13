@@ -4,7 +4,9 @@ LDFLAGS=
 SOURCES=stack/ll_stack.cpp stack/array_stack.cpp \
 	queue/arr_queue.cpp queue/ll_queue.cpp queue/circular_queue.cpp queue/deque.cpp queue/priority_queue.cpp \
 	expression/infix_to_postfix.cpp expression/infix_to_prefix.cpp \
-	tree/binary_tree.cpp
+	tree/binary_tree.cpp \
+	sorting/insertion.cpp sorting/selection.cpp sorting/bubble.cpp sorting/merge.cpp sorting/radix.cpp \
+	sorting/shell.cpp sorting/heap.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLES=$(SOURCES:.cpp=)
 
