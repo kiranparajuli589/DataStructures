@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<array>
 #include "base.h"
 
 using namespace std;
@@ -47,9 +46,9 @@ void insertionSortRecursively(vector<int>& arr, int size) {
 int main() {
     vector<int> unsorted{ 8, 2, 4, 9, 3, 6 };
     cout << "Insertion Sort:" << endl;
-    displayArray(insertionSort(unsorted));
+    displayVector(insertionSort(unsorted));
     cout << "Insertion Sort Recursively:" << endl;
     insertionSortRecursively(unsorted, unsorted.size());
-    displayArray(unsorted);
+    displayVector(unsorted);
     return 0;
 }

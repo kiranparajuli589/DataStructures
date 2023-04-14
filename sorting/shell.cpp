@@ -5,7 +5,7 @@
 using namespace std;
 
 void performShellSort(vector<int>& arr) {
-    int n = int(arr.size());
+    int n = arr.size();
     int gap = n / 2;
 
     while (gap > 0) {
@@ -30,7 +30,7 @@ int main() {
 
     performShellSort(unsorted);
 
-    displayArray(unsorted);
+    displayVector(unsorted);
 
     return 0;
 }

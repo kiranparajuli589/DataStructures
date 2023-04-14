@@ -6,7 +6,8 @@ SOURCES=stack/ll_stack.cpp stack/array_stack.cpp \
 	expression/infix_to_postfix.cpp expression/infix_to_prefix.cpp \
 	tree/binary_tree.cpp \
 	sorting/insertion.cpp sorting/selection.cpp sorting/bubble.cpp sorting/merge.cpp sorting/radix.cpp \
-	sorting/shell.cpp sorting/heap.cpp
+	sorting/shell.cpp sorting/heap.cpp \
+	search/search.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLES=$(SOURCES:.cpp=)
 

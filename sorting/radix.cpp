@@ -42,7 +42,7 @@ int main() {
 
     performRadixSort(unsorted);
 
-    displayArray(unsorted);
+    displayVector(unsorted);
 
     return 0;
 }

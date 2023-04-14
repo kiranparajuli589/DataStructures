@@ -46,23 +46,3 @@ void performMerge(vector<int>& arr, int left, int middle, int right) {
         k++;
     }
 }
-
-void performMergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int middle = (left + right) / 2;
-        performMergeSort(arr, left, middle);
-        performMergeSort(arr, middle + 1, right);
-
-        performMerge(arr, left, middle, right);
-    }
-}
-
-int main() {
-    vector<int> unsorted{ 5, 4, 3, 2, 1 };
-
-    performMergeSort(unsorted, 0, unsorted.size());
-
-    displayArray(unsorted);
-
-    return 0;
-}

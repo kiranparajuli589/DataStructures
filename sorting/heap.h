@@ -4,17 +4,6 @@
 
 using namespace std;
 
-int getParentPos(int pos) {
-    return (pos-1) / 2;
-}
-
-int getLeftChildPos(int pos) {
-    return 2 * pos + 1;
-}
-
-int getRightChildPos(int pos) {
-    return 2 * pos + 2;
-}
 
 void shiftDown(vector<int>& arr, int start, int end) {
     int root = start;
@@ -44,24 +33,4 @@ void heapify(vector<int>& arr) {
         shiftDown(arr, start, size - 1);
         start -= 1;
     }
-}
-
-void heapSort(vector<int>& arr) {
-    heapify(arr);
-    int end = arr.size() - 1;
-    while (end > 0) {
-        swap(arr[end], arr[0]);
-        end -= 1;
-        shiftDown(arr, 0, end);
-    }
-}
-
-int main() {
-    vector<int> unsorted{8, 5, 2, 6, 9, 3, 1, 4, 0, 7};
-
-    heapSort(unsorted);
-
-    displayArray(unsorted);
-
-    return 0;
 }

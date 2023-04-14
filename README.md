@@ -9,3 +9,4 @@ Implementations are done in C++. The following data structures are covered:
 - [Queue](queues/README.md)
 - [Tree](tree/README.md)
 - [Sorting](sorting/README.md)
+- [Searching](search/README.md)

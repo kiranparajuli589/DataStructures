@@ -26,5 +26,5 @@ void performSelectionSort(vector<int>& arr) {
 int main() {
     vector<int> unsorted{ 8, 2, 4, 9, 3, 6 };
     performSelectionSort(unsorted);
-    displayArray(unsorted);
+    displayVector(unsorted);
 }
