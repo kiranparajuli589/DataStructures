@@ -3,25 +3,6 @@
 
 using namespace std;
 
-void moveDiskStep(int diskNum, char source, char target, char auxiliary) {
-    if (diskNum == 1) {
-        // Base case: If there is only 1 disk, move it from source to target peg
-        cout << "Move disk 1 from " << source << " to " << target << endl;
-    } else {
-        // Move (n-1) disks from source to auxiliary peg
-        moveDiskStep(diskNum - 1, source, auxiliary, target);
-        // Move the nth disk from source to target peg
-        cout << "Move disk " << diskNum << " from " << source << " to " << target << endl;
-        // Move (n-1) disks from auxiliary to target peg
-        moveDiskStep(diskNum - 1, auxiliary, target, source);
-    }
-}
-
-void tohStep(int numDisks, char source = 'A', char target = 'C', char auxiliary = 'B') {
-    cout << "Tower of Hanoi with " << numDisks << " disks:" << endl;
-    moveDiskStep(numDisks, source, target, auxiliary);
-}
-
 void displayStack(stack<int>& s) {
     while (!s.empty()) {
         cout << s.top() << " ";
@@ -47,7 +28,7 @@ void displayTower(
     cout << endl;
 }
 
-void move(
+void tohMove(
     int diskNum,
     stack<int>& source,
     stack<int>& target,
@@ -58,33 +39,39 @@ void move(
 ) {
     if (diskNum == 1) {
         // Base case: If there is only 1 disk, move it from source to target peg
+        cout << "Move disk 1 from " << sourcePeg << " to " << targetPeg << endl;
+
         target.push(source.top());
         source.pop();
 
         displayTower(source, auxiliary, target, sourcePeg, targetPeg, auxiliaryPeg);
     } else {
         // Move (n-1) disks from source to auxiliary peg
-        move(diskNum - 1, source, auxiliary, target, sourcePeg, auxiliaryPeg, targetPeg);
+        tohMove(diskNum - 1, source, auxiliary, target, sourcePeg, auxiliaryPeg, targetPeg);
+
         // Move the nth disk from source to target peg
+        cout << "Move disk " << diskNum << " from " << sourcePeg << " to " << targetPeg << endl;
         target.push(source.top());
         source.pop();
 
         displayTower(source, auxiliary, target, sourcePeg, targetPeg, auxiliaryPeg);
+
         // Move (n-1) disks from auxiliary to target peg
-        move(diskNum - 1, auxiliary, target, source, auxiliaryPeg, targetPeg, sourcePeg);
+        tohMove(diskNum - 1, auxiliary, target, source, auxiliaryPeg, targetPeg, sourcePeg);
     }
 }
 
 int main() {
-    int numDisks = 4; // Number of disks in Tower of Hanoi
+    int numDisks;
 
-    tohStep(numDisks);
-
-    cout << endl;
+    cout << "Enter number of disks: ";
+    cin >> numDisks;
 
     stack<int> sourceStack;
     stack<int> targetStack;
     stack<int> auxiliaryStack;
+
+    cout << "Tower of Hanoi with " << numDisks << " disks:" << endl;
 
     for (int i = numDisks; i > 0; i--) {
         sourceStack.push(i);
@@ -95,14 +82,13 @@ int main() {
 
     cout << "Moving disks from A to C:" << endl;
 
-    move(
+    tohMove(
         numDisks,
         sourceStack,
         targetStack,
         auxiliaryStack
     );
 
-    cout << "====================" << endl;
-
+    cout << endl;
     return 0;
 }
