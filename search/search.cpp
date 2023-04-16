@@ -8,7 +8,7 @@ using namespace std;
 int linearSearch(vector<int>& arr, int target)
 {
     int i = 0;
-    while (i < arr.size())
+    while (i < (int)arr.size())
     {
         if (arr[i] == target)
         {
@@ -17,6 +17,32 @@ int linearSearch(vector<int>& arr, int target)
         i++;
     }
     return -1;
+}
+
+int linearSearchWithSentinel(vector<int>& arr, int target) {
+    int i = 0;
+    while(arr[i] != target) {
+        i++;
+    }
+    if (i < (int)arr.size()) {
+        return i;
+    }
+    else {
+        return -1;
+    }
+}
+
+int linearOrderedSearch(vector<int>& arr, int target) {
+    int i = 0;
+    while(arr[i] >= target) {
+        i++;
+    }
+    if (arr[i] = target) {
+        return i;
+    }
+    else {
+        return -1;
+    }
 }
 
 int binarySearch(vector<int>& arr, int target)

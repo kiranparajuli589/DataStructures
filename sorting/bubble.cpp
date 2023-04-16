@@ -50,13 +50,13 @@ int main() {
     cout << "Bubble sort: " << endl;
 
     performBubbleSort(unsorted);
-    displayArray(unsorted);
+    displayVector(unsorted);
 
 
     vector<int> unsorted1{ 8, 2, 4, 9, 3, 6 };
     cout << "Optimized Bubble sort: " << endl;
     performOptimizedBS(unsorted1);
-    displayArray(unsorted1);
+    displayVector(unsorted1);
 
     return 0;
 }

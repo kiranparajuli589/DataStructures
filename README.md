@@ -4,9 +4,11 @@ This repository demonstrates concepts and implementations for different abstract
 
 Implementations are done in C++. The following data structures are covered:
 
-- [Stack](stacks/README.md)
-   - [Expressions](expressions/README.md) (infix to postfix and prefix)
-- [Queue](queues/README.md)
+- [Stack](stack/README.md)
+   - [Expressions](expression/README.md) (infix to postfix and prefix)
+- [Queue](queue/README.md)
+- [List](list/README.md)
+- [Recursion](recursion/README.md)
 - [Tree](tree/README.md)
 - [Sorting](sorting/README.md)
 - [Searching](search/README.md)
