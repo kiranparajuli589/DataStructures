@@ -9,7 +9,8 @@ SOURCES=stack/ll_stack.cpp stack/array_stack.cpp \
 	sorting/insertion.cpp sorting/selection.cpp sorting/bubble.cpp \
 	sorting/radix.cpp sorting/shell.cpp \
 	search/search.cpp \
-	recursion/toh.cpp recursion/fibonacci.cpp
+	recursion/toh.cpp recursion/fibonacci.cpp \
+	list/list_queue.cpp list/arr_static_list.cpp list/arr_dynamic_list.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLES=$(SOURCES:.cpp=)
 
